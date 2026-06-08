@@ -52,4 +52,4 @@ jobs:
           LATITUDE: ${{ vars.LATITUDE || '40.6782' }}
           LONGITUDE: ${{ vars.LONGITUDE || '-73.9442' }}
           NEWS_COUNTRY: ${{ vars.NEWS_COUNTRY || 'us' }}
-        run: python src/brief.py
+        run: python -m src.brief
