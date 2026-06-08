@@ -22,6 +22,7 @@ def write_brief(
     calendar: str,
     email: str,
     reminders: list[dict],
+    facts: str = "",
 ) -> str:
     """Compose a morning brief and return it as a Telegram-ready string."""
     reminder_text = "\n".join(f"• {r['text']} (due {r['due_date']})" for r in reminders)
@@ -50,6 +51,9 @@ Here is the data:
 
 *News:*
 {news}
+
+*Fun Facts:*
+{facts if facts else "(unavailable)"}
 
 Write the brief now."""
 

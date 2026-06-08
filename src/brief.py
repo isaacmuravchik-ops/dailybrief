@@ -20,6 +20,7 @@ from src.google_sources import get_calendar, get_email
 from src.reminders import get_due_reminders, mark_reminder_sent
 from src.compose import write_brief
 from src.telegram import send
+from src.facts import get_fun_facts
 
 
 def main() -> None:
@@ -51,7 +52,12 @@ def main() -> None:
         reminders = []
         print(f"[brief] reminders fetch failed: {e}")
 
-    brief_text = write_brief(weather, news, calendar, email, reminders)
+    try:
+        facts = get_fun_facts()
+    except Exception as e:
+        facts = f"(fun facts unavailable: {e})"
+
+    brief_text = write_brief(weather, news, calendar, email, reminders, facts)
     send(brief_text)
 
     # Mark non-recurring reminders sent
